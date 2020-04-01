@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪选择器</title>
+    <style>
+       /* 注意 冒号 ：  和前面的p之间不能用空格 */
+        p:first-letter {
+            font-size: 28px;
+            color: red;
+        }
+        p:first-child {
+            margin-left: 50px;
+        }
+
+        /* p {
+            display: inline;
+        } */
+
+        /*  a 标签在不同状态下的展示效果 */
+        a {
+            font-size: 18px;
+            color: black;
+        }
+
+        /* 鼠标移动到链接上时的状态 */
+        a:hover {
+            color: red;
+        }
+
+        /* 已访问过的状态 */
+        a:visited {
+            color: green;
+        }
+
+        .left {
+            font-size: 18px;
+            color: black;
+        }
+
+        /* 前面加图片 */
+        .left::before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url('./images/hert.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            margin-right: 4px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .right {
+            font-size: 18px;
+            color: black;
+        }
+
+        .right::after {
+            content: '→';
+            display: inline-block;
+            color: red;
+            margin-left: 5px;
+        }
+
+        /* ::first-line 对首行内容进行操作*/
+        /* ::first-letter 对首字母进行操作*/
+        .right-letter {
+            font-size: 18px;
+            color: black;
+        }
+
+        .right-letter::first-letter {
+            font-size: 28px;
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p class="left">常用的伪选择器
+        <hr>
+        <p>
+            :first-child
+            <hr>
+            :not
+            <hr>
+            :nth-child()
+            <hr>
+            :only-child()
+            <hr>
+            :root()
+            <hr>
+            :disabled
+            <hr>
+        </p>
+    </p>
+    <p>My is a  pargrame</p>
+    <a href="https://www.baidu.com">百度</a>
+    <p class="right">测试伪元素</p>
+    <p class="right-letter">right letter test</p>
+
+</body>
+
+</html>

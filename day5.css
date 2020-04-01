@@ -1,0 +1,155 @@
+/* 
+class 选择器：以 “.” 开头，后跟一个名字。在一个HTML中，类选择器可以作用于多个 HTML 标签。
+ID 选择器：以 “#” 开头，后跟一个选择器的名字，名字必须在当前文档唯一;
+通用选择器（Universal selector）：单独一个“ * ”，作用于所有的标签。
+属性选择器（Attribute selectors）：根据属性来匹配HTML元素
+伪选择器（pseudo-selectors）：它包含伪类（pseudo-classes）和伪元素（pseudo-elements）。这类选择器不是真正意义上的选择器，它作为选择器的一部分，起到选择器匹配元素的限定条件。
+组合选择器（Combinators）: 这种选择器可以作用于多个 HTML 元素，有多种组合方式
+
+*/
+
+/* class选择器  以.开头 */
+.code-bg {
+  border-left: 3px solid #2a7ae2;
+  background-color: #eef;
+  border-radius: 3px;
+  padding: 10px;  
+}
+/* 伪选择器 系统标签  比如hr  h3前面不用加. */
+hr {
+    height: 0.5px;
+}
+/* 伪选择器 */
+h3 {
+    border-left: 3px solid #2a7ae2;
+    background-color: #eef;
+    border-radius: 3px;
+    padding: 10px;
+}
+.title {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* id 选择器 以#开头 */
+#nav-box {
+    /*不折行  */
+    white-space: nowrap;
+    background-color: #0077FF;
+    /* x轴可以滚动 */
+    overflow-x: scroll;
+    /* y轴内容超出时隐藏 */
+    overflow-y: hidden;
+}
+/* 清除标签默认边距 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.line {
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 2px;
+}
+/* 组合选择器 */
+/* div 的 所有 后代元素p都会起作用 它会遍历 div 中所有的子元素 p，只要找到 p 元素就应用对应的 CSS 样式*/
+div p {
+    color: red;
+}
+/* div的第一层子节点中的所有span元素 */
+div > span {
+    font-size: 20px;
+    color: white;
+    margin-right: 20px;
+    line-height: 40px; 
+}
+/* div 的下一个 兄弟节点p */
+div + p {
+   color: red; 
+}
+/* div 之后的所有兄弟节点 p */
+div ~ p {
+    color: red; 
+}
+/* div 和 p 使用同一个CSS样式 */
+div,p {
+    color: red; 
+}
+
+/* 匹配元素的第一个孩子是div的所有元素 */
+div :first-child {
+    margin-left: 15px;
+}
+/* 匹配元素的第2个孩子是div的所有元素 */
+div:nth-child(2) {
+    margin-left: 15px;
+}
+div :last-child {
+    margin-right: 15px;
+}
+/*匹配选择器为#button的第一个孩子   */
+#button :nth-child(1) {
+    margin-right: 15px;
+}
+
+#button {
+    height: 40px;
+    line-height: 40px;
+    background-color: #0077FF;
+    border-radius: 4px;
+    color: white;
+    margin: 100px auto;
+    width: 200px;
+    text-align: center;
+}
+#d {
+    color: red;
+}
+
+/* 匹配超链接样式 */
+a {
+    color: blue;
+    font-weight: bold;
+}
+
+/* 访问后的状态 */
+a:visited {
+    color: yellow;
+}
+
+/* 鼠标悬停、点击、聚焦时的样式 */
+a:hover,
+a:active,
+a:focus {
+    color: darkred;
+    text-decoration: none;
+}
+
+
+/* 匹配所有使用属性 "lefe" 的元素 */
+[lefe] {
+    color: green;
+}
+
+/*匹配所有使用属性为 "lefe"，且值为 liquid 的元素*/
+[lefe="liquid"] {
+    background-color: goldenrod;
+}
+
+/*匹配所有使用属性为 "lefe"，且值包含 spicy 的元素*/
+[lefe~="spicy"] {
+    color: red;
+}
+/* 伪元素（pseudo-elements）选择器，它以“ :: ” 为标识符。比如修改首字母的样式。在超链接后添加一个向上的弯曲的箭头： */
+p::first-letter{
+    font-weight: bold;
+}
+p::first-line{
+    font-size: 3em;
+}
+
+[href^=http]::after {
+    content: '⤴';
+}

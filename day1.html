@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 定义页面的编码方式 -->
+    <meta charset="UTF-8">
+    <!--viewport为可视区域 他的宽度为设备宽  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- http-equiv 表示执行一个命令，下面设置 HTTP 的 content-type -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- 页面的描述信息，可供搜索引擎显示 -->
+    <meta name="description" content="搜索我吧">
+    <title>Document</title>
+    <!-- 直接定义css样式 -->
+    <!-- <style>
+        body {
+            background-color: #2A3950;
+        }
+        .title {
+            text-align: center;
+            font-size: 20px;
+            color: white;
+        }
+        .button {
+            border: 1px solid white;
+            text-align: center;
+            padding: 10px 30px;
+            margin: 40px 50px;
+            border-radius: 4px;
+            background-color: #7089FF;
+            color: white;
+            font-weight: bold;
+        }
+        ::content {
+            margin: 20px;
+        }
+    </style> -->
+    <!-- 使用外部定义的 css -->
+    <link rel="stylesheet" href="./day5.css">
+    <!-- head 中定义的 JavaScript 将会在页面加载前执行，会阻塞页面加载，所以往往会把 JavaScript 定义在 body 标签中 -->
+    <!-- <script>
+        let name = "my name";
+        console.log(name);
+
+        // onload 方法可以监听页面加载完成
+        window.onload = function () {
+            console.log("window loaded");
+        }
+    </script> -->
+    <!-- 外部定义的JS -->
+    <script src="./day4.js"></script>
+</head>
+
+<body>
+    <p class="title">《学习前端》</p>
+    <h1>通过微信公众号也可以很好的学习 <hr></h1>
+
+    <div class="code-bg">
+        <code>
+            const p = document.querySelector('p');
+            p.onclick = function() {
+                alert('噢，噢，噢，别点我了。');
+            }
+        </code>
+    </div>
+
+    <p>可以通过后面这个链接<a href="http://www.baidu.com" target="_blank" rel="noopener noreferrer">baidu</a>去更好的掌握</p>
+    <h3>课程大纲</h3>
+    <ol>
+        <li>day1</li>
+        <li>day2</li>
+        <li>day3</li>
+    </ol>
+    <h3>关键字</h3>
+    <ol>
+        <li>day1</li>
+        <li>day2</li>
+        <li>day3</li>
+    </ol>
+
+    <!-- <div class="button" onclick="addText()">奖励自己一下</div> -->
+</body>
+
+</html>

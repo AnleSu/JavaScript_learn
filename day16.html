@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation & transition</title>
+    <style>
+        .bg-box {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+        .bg-box-animation {
+            /* 动画的名字和执行时间 要绑定到选择器上 */
+            animation: background-change 2s;
+            animation-iteration-count: 10;
+        }
+        /* 动画的关键帧 */
+        @keyframes background-change {
+            0% {
+                background-color: antiquewhite;
+            }
+
+            50% {
+                background-color: brown;
+            }
+
+            100% {
+                background-color: blue;
+            }
+        }
+
+        .move-box {
+            background-color: red;
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+        }
+        .move-box-animation {
+            animation-name: move;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+            animation-delay: 1s;
+            /* 重复次数 */
+            animation-iteration-count: 10;
+            /* 动画的方向，先正向后逆向 */
+            animation-direction: alternate;
+             /* 动画执行后的填充模式 */
+            animation-fill-mode: backwards;
+              /* 动画的运行状态 */
+            animation-play-state: running;
+        }
+        @keyframes move {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            25% {
+                left: 100px;
+                top: 0;
+            }
+            50% {
+                left: 100px;
+                top: 100px;
+            }
+            75% {
+                left: 0px;
+                top: 100px;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="bg-box bg-box-animation"></div>
+    <div class="move-box move-box-animation"></div>
+</body>
+</html>

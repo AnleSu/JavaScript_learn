@@ -1,0 +1,6 @@
+/* border-width, border-style ： node、hidden、dotted、dashed、solid, border-color */
+.title {
+    border: 1px solid red;
+    /* 下边框的宽度 */
+    border-bottom-width: 2px;
+}

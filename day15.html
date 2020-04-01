@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100%;
+            height: 100px;
+            background-color: bisque;
+        }
+
+        .title {
+            font-size: 16px;
+            background-color: red;
+            color: white;
+        }
+
+        .single-line {
+            overflow: hidden;
+            /* 不折行 */
+            white-space: nowrap;
+            /* ellipsis 以 ... 省略号显示 ；clip : 截断显示；*/
+            text-overflow: ellipsis;
+        }
+
+        .two-line {
+            /* display 为 -webkit-box 或者 -webkit-inline-box； */
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            
+            xhttp.onreadystatechange = function () {
+                if (this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "http://127.0.0.1:8888/api/fe/list", true);
+            xhttp.send();
+        }
+    </script>
+    
+</head>
+
+<body>
+    <div class="box">
+        <!-- class  包含title  two-line 两部分 可分别定义style -->
+        <p class="title two-line">学习前端这个想法一直都有，只是一直没找到它对我有什么作用。直到我想建一个网站的时候，才下定决心。最终通过 Jekyll 做了我第一个网站。</p>
+        <button class="button" onclick="loadDoc()">点击发送一个网络请求</button>
+        <p id="demo"></p>
+
+        <script src="./app/day1.js"></script>
+    </div>
+</body>
+
+</html>
