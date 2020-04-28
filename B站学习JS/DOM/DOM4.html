@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn1');
+            var oUl = document.getElementById('ul1');
+            var oText = document.getElementById('text1');
+
+            oBtn.onclick = function () {
+                //创建元素
+                var oLi = document.createElement('li');
+                var aLi = oUl.getElementsByTagName('li');
+                oLi.innerHTML = oText.value;
+
+                if (aLi.length > 0) {
+                    //插入节点
+                    oUl.insertBefore(oLi, aLi[0]);
+                } else {
+                    //追加一个节点   添加到父级的末尾
+                    oUl.appendChild(oLi);
+                }
+
+            }
+
+            var aA = document.getElementsByTagName('a');
+            for (let index = 0; index < aA.length; index++) {
+                const element = aA[index];
+                element.onclick = function () {
+                    //删除a所在的li  就是a的父节点
+                    oUl.removeChild(this.parentNode);
+                }
+                
+            }
+
+
+            //文档碎片  基本上已经被淘汰 在高级浏览器上 并不能提高性能
+            var oFrag = document.createDocumentFragment();
+            for (let index = 0; index < 10000; index++) {
+                var oLi = document.createElement('li');
+                oFrag.appendChild(oLi);
+            }
+            oUl.appendChild(oFrag);
+
+        };
+    </script>
+</head>
+
+<body>
+    <input type="text" id="text1">
+    <input type="button" value="创建li" id="btn1">
+    <ul id="ul1">
+
+        <li>adsfdsfadf  <a href="javascript:;">delete</a></li>
+        <li>adsfdsfadf  <a href="javascript:;">delete</a></li>
+        <li>adsfdsfadf  <a href="javascript:;">delete</a></li>
+        <li>adsfdsfadf  <a href="javascript:;">delete</a></li>
+        <li>adsfdsfadf  <a href="javascript:;">delete</a></li>
+    </ul>
+</body>
+
+</html>

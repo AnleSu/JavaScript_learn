@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格应用 </title>
+    <script>
+        window.onload = function () {
+            var oTab = document.getElementById('tab1');
+            // alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML);
+
+
+            //表格的简洁操作
+            // alert(oTab.tBodies[0].rows[0].cells[1].innerHTML);
+            oTab.tHead;//表头
+            oTab.tFoot;//表尾
+
+            var oldColor = '';
+
+            for (let index = 0; index < oTab.tBodies[0].rows.length; index++) {
+                const element = oTab.tBodies[0].rows[index];
+                //隔行变色
+                if (index % 2) {
+                    element.style.background = 'white';
+                } else {
+                    element.style.background = '#ccc';
+                }
+
+                //鼠标移入高亮
+                element.onmouseover = function () {
+                    oldColor = this.style.background;
+                    this.style.background = 'green';
+                }
+
+                element.onmouseout = function () {
+                    this.style.background = oldColor;
+                }
+            }
+
+            //插入
+            var oBtn = document.getElementById('btn1');
+            var oName = document.getElementById('name');
+            var oAge = document.getElementById('age');
+            var id = oTab.tBodies[0].rows.length + 1;
+            oBtn.onclick = function () {
+                var oTr = document.createElement('tr');
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = id++; //id 即使被删除了 删除的id也不去重用了 所以直接++  不考虑删除
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oName.value;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oAge.value;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = '<a href="javascript:;">delete</a>';
+                oTr.appendChild(oTd);
+                //删除
+                oTd.getElementsByTagName('a')[0].onclick = function () {
+                    oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+                }
+
+                oTab.tBodies[0].appendChild(oTr);
+            }
+
+            //搜索
+            var oText = document.getElementById('keyword');
+            var oBtn2 = document.getElementById('btn2');
+
+            oBtn2.onclick = function () {
+                for (let index = 0; index < oTab.tBodies[0].rows.length; index++) {
+                    const element = oTab.tBodies[0].rows[index];
+                    var sTab = element.cells[1].innerHTML;
+                    var sTxt = oText.value;
+
+                    var arr = sTxt.split(' ');//分割字符串 用空格
+
+                    //都转换成小写  toLowerCase()
+                    if (sTab.toLowerCase() == sTxt.toLowerCase()) {
+                        element.style.background = 'yellow';
+                    } else {
+                        element.style.background = '';
+                    }
+
+                    //模糊搜索  search() 找到则返回字符所在位置 没找到返回-1
+                    if (sTab.search(sTxt) != -1) {
+                        element.style.background = 'yellow';
+                    } else {
+                        element.style.background = '';
+                    }
+
+
+                    //多个关键词
+                    element.style.background = '';
+
+                    for (let i = 0; i < arr.length; i++) {
+                        const key = arr[i];
+                        if (sTab.search(key) != -1) {
+                            element.style.background = 'yellow';
+                        }
+                    }
+
+
+                }
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    name: <input type="text" id="name">
+    age: <input type="text" id="age">
+    <input type="button" value="添加" id="btn1">
+    <input type="text" id="keyword">
+    <input type="button" value="search" id="btn2">
+    <table id="tab1" border="1" width="500px">
+        <thead>
+            <td>ID</td>
+            <td>name</td>
+            <td>age</td>
+            <td>edit</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>13</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>张的</td>
+                <td>16</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>发三</td>
+                <td>45</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>张挨饿热奥若</td>
+                <td>134</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>张打分</td>
+                <td>43</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>张分</td>
+                <td>43</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
