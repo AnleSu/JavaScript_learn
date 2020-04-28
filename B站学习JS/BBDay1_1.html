@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焕肤&设置文字</title>
+    <!-- 焕肤 -->
+    <link id="l1" rel="stylesheet" type="text/css" href="./BBDay1_1.css">
+    <script>
+        function skin1() {
+            var oL = document.getElementById('l1');
+            oL.href = './BBDay1_1.css'
+        }
+        function skin2() {
+            var oL = document.getElementById('l1');
+            oL.href = './BBDay1_2.css'
+        }
+        function setText() {
+            var oText = document.getElementById('text1');
+            oText.value = '设置的文字';
+            // 鼠标移向input 会显示title
+            oText.title = 'text的title'
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="skin1()">
+    <input type="button" onclick="skin2()">
+    <input type="text" id="text1">
+    <input type="button" value="设置文字" onclick="setText()">
+</body>
+</html>

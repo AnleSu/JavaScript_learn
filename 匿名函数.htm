@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匿名函数&onload&获取一组元素&循环</title>
+    <script>
+        // var oBtn = document.getElementById('btn1'); //此时下面body的内容还没加载 还找不到ID为btn1的元素
+        // oBtn.onclick = function () { //匿名函数
+        //     alert('abcd');
+        // }
+
+        window.onload = function () { //页面加载成功
+            var oBtn = document.getElementById('btn1'); 
+            oBtn.onclick = whileFunc();
+
+            var aDiv = document.getElementsByTagName('div');
+            // alert(aDiv.length);//数组长度
+            forFunc(aDiv);
+            // aDiv[1].style.backgroundColor = 'red';
+        }
+
+        function whileFunc () {
+            var i = 0;
+            while (i < 5) {
+                alert(i);
+                i = i + 1;//i++
+            }
+        }
+
+        function forFunc (array) {
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                element.style.backgroundColor = 'red';
+                
+            }
+        }
+    </script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            float: left;
+            border: 1px solid black;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" id="btn1" value="按钮">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+</body>
+
+</html>

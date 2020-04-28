@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 0;
+            margin: 50;
+            top: 150px;
+        }
+        #div2 {
+            width: 712px;
+            height: 108px;
+            margin: 100px auto;
+            position: relative;
+            background: red;
+            /* 超出的不显示 */
+            overflow: hidden; 
+        }
+
+        #div2 ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #div2 ul li {
+            float: left;
+            width: 178px;
+            height: 108px;
+            list-style: none;
+        }
+    </style>
+    <script>
+        // offsetLeft / offsetTop  是一个比较重要的属性 他是根据所有可以影响元素布局的因素 最终算出左边的偏移量 比如当前这个demo中，设置了left和margin  leftOffset = left + margin
+        window.onload = function () {
+            var oDiv1 = document.getElementById('div1');
+            setInterval(() => {
+                oDiv1.style.left = oDiv1.offsetLeft + 10 +'px';
+            }, 30);
+            
+            var oDiv2 = document.getElementById('div2');
+            // 这里必须取数组的第一个元素 
+            var oUl = document.getElementsByTagName('ul')[0];
+            var oLi = oUl.getElementsByTagName('li');
+            var timer = null;
+            var speed = -2;
+            // 复制一份自己的内容 
+            oUl.innerHTML = oUl.innerHTML + oUl.innerHTML;
+            // 宽度就是 li宽度 * li个数  重新设置宽度是为了让图片横向排列 如果不设置 会变成两行
+            oUl.style.width = oLi[0].offsetWidth * oLi.length + 'px';
+
+            function move() {
+                if (oUl.offsetLeft < -oUl.offsetWidth / 2) { //往左滚offsetLeft是负值  当滚动到一半的时候 从头开始继续滚动 
+                    oUl.style.left = '0';
+                }
+
+                if (oUl.offsetLeft > 0) { //往右滚动
+                    oUl.style.left = -oUl.offsetWidth / 2 + 'px';
+                }
+                oUl.style.left = oUl.offsetLeft + speed + 'px'; // offsetLeft 减 是往左  加是往右
+            }
+            
+            timer = setInterval(move, 30);
+            oDiv2.onmouseover = function () {
+                clearInterval(timer);
+            }
+
+            oDiv2.onmouseout = function () {
+                // 定时器没有重启 或者 恢复  只能setInterval 或者 clear
+                timer = setInterval(move, 30);
+            }
+
+            document.getElementsByTagName('a')[0].onclick = function () {
+                speed = -2;
+            }
+
+            document.getElementsByTagName('a')[1].onclick = function () {
+                speed = 2;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <a href="javascript::">向左走</a>
+    <a href="javascript::">向右走</a>
+    <div id="div2">
+        <ul>
+            <li><img src="./img/1.jpg"></li>
+            <li><img src="./img/2.jpg"></li>
+            <li><img src="./img/3.jpg"></li>
+            <li><img src="./img/4.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>

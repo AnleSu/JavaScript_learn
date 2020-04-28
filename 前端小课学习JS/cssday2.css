@@ -1,0 +1,21 @@
+
+.main {
+    background-color: antiquewhite;
+    display: flex;
+    width: 400px;
+    height: 60px;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.center {
+    justify-content: center;
+}
+
+.end {
+    justify-content: end;
+}

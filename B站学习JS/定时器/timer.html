@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器&date对象</title>
+    <script>
+        var oDate = new Date();
+        //获取当前时间的 时 分 秒
+        // alert(oDate.getHours());
+        // oDate.getMinutes;
+        // oDate.getSeconds;
+        alert(oDate.getMonth() + 1);
+        oDate.getFullYear(); //年
+        oDate.getMonth();//月  少一个月
+        oDate.getDate();//日
+        oDate.getDay();//星期几  从0开始 0代表周日 
+
+        window.onload = function () {
+            var aImg = document.getElementsByTagName('img');
+
+            setInterval(() => { //间隔型
+                tick();
+            }, 1000);
+
+            function tick() {
+                var oDate = new Date();//必须在定时器内部重新获取一次date 
+                // var str = '012359';
+
+                
+                var str = toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
+
+
+                for (let index = 0; index < aImg.length; index++) {
+                    const element = aImg[index];
+                    //设置图片路径
+                    //str[index] 会不兼容 所以改成charAt方法  获取字符串的某一位
+                    element.src = './images/' + str.charAt(index) + '.png';
+                }
+            }
+
+            tick();//解决首次打开页面 看到012345的初始状态 因为是延迟了一秒才开始定时器 所以在onload中直接调用一次tick
+
+
+// ------------------------------------------------------------------------------------
+
+
+            //延时提示框
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            var timer2 = null;
+            oDiv2.onmouseover = oDiv1.onmouseover = function () {//合并简化相同的function
+                clearTimeout(timer2);
+                oDiv2.style.display = 'block'; //对于已经展示出来的元素 再设置display= block 不会有影响 
+            }
+
+            oDiv2.onmouseout = oDiv1.onmouseout = function () { 
+                timer2 = setTimeout(() => { //延时型
+                    oDiv2.style.display = 'none';
+                }, 500);
+            }
+
+            // oDiv2.onmouseover = function () {
+            //     clearTimeout(timer2);
+            // }
+
+            // oDiv2.onmouseout = function () {
+            //     timer2 = setTimeout(() => {
+            //         oDiv2.style.display = 'none';
+            //     }, 500);
+            // }
+
+        }
+        //不足两位补零
+        function toDou(n) {
+            if (n < 10) {
+                return '0' + n;
+            }
+            return '' + n;//拼接一个字符串 保证返回的一定是个字符串
+        }
+
+    </script>
+    <style>
+        div {
+            float: left;
+            margin: 10px;
+        }
+        #div1 {
+            width: 50px;
+            height: 50px;
+            background: red;
+        }
+
+        #div2 {
+            width: 250px;
+            height: 180px;
+            background: #ccc;
+            display: none;
+
+        }
+    </style>
+</head>
+
+<body style="background: black; color: white; font-size: 50px;">
+    <img src="./images/0.png">
+    <img src="./images/1.png">
+    :
+    <img src="./images/2.png">
+    <img src="./images/3.png">
+    :
+    <img src="./images/4.png">
+    <img src="./images/5.png">
+
+    <!-- <img src="./images/6.png" >
+    <img src="./images/7.png" >
+    <img src="./images/8.png" >
+    <img src="./images/9.png" > -->
+
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数传参&操作属性&变量和字符串</title>
+    <style> 
+        #div1 {
+            width: 200px;
+            height: 100px;
+            background: red;
+        }
+        .box {
+            background: yellow;
+        }
+    </style>
+    <script>
+        // 样式优先级 * < 标签 < class < id < 行间 
+        // 通过设置style修改的就是行间样式 优先级最高 
+        // 修改行间样式之后再通过className修改 不会有效果
+        function changeColor(color) {
+            var oDiv = document.getElementById('div1');
+            oDiv.style.background = color;
+        }
+        function setStyle(name, value) {
+            var oDiv = document.getElementById('div1');
+            // 使用类似 key-value 的方式改变样式
+            // 变量 不需要加引号
+            oDiv.style[name] = value;
+        }
+        function toRed() {
+            var oDiv = document.getElementById('div1');
+            // 这里必须用className  不能是class  代表标签中的class 只有这一个例外 <div id="div2" class="box"></div>
+            oDiv.className = 'box';
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="变绿" onclick="setStyle('background', 'green')">
+    <input type="button" value="变宽" onclick="setStyle('width', '300px')">
+    <input type="button" value="变高" onclick="setStyle('height', '200px')">
+    <input type="button" value="随便" onclick="toRed()">
+    <div id="div1"></div>
+    <!-- 提取行间事件 -->
+    <input type="button" id="btn1" value="button">
+    <script>
+        var oBtn = document.getElementById('btn1');
+        function abc() {
+            alert('abbbb');
+        }
+        oBtn.onclick = abc;
+    </script>
+</body>
+</html>

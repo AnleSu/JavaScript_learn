@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兄弟节点</title>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementById('ul1');
+            
+            //首尾子节点   firstChild 、firstElementChild  lastChild、lastElementChild
+            
+            if (oUl.firstChild) {
+                oUl.firstChild.style.background = 'red';
+                oUl.lastChild;
+               
+            } else {
+                oUl.firstElementChild.style.background = 'red';
+                oUl.lastElementChild;
+            }
+
+            //兄弟节点 
+            oUl.nextSibling;
+            oUl.nextElementSibling;
+            oUl.previousSibling;
+            oUl.previousElementSibling;
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

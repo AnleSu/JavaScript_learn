@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数&数组操作</title>
+    <script>
+        function show(a, b) {
+            return 132;
+        }
+
+        var a = show(3, 15);
+        // alert(a);
+
+        function sum(a, b) {
+            return a + b;
+        }
+        //arguments  可变参
+        function sum1() {
+            arguments.length;
+            arguments[0];
+            var result = 0;
+            // for (let index = 0; index < arguments.length; index++) {
+            //     const element = arguments[index];
+            //     result += element;
+            // }
+
+            for (const key in arguments) {//forin 循环数组 得到的key是下标
+                const element = arguments[key];
+                result += element;
+            }
+            return result;
+        }
+
+        alert(sum1(3, 4, 5, 6, 7, 7, 8, 8, 8));
+
+        //两个参数的时候是获取style的值 三个参数的时候是设置style的值
+        function css(obj, name, value) {
+            // if (arguments.length == 2) {
+            //     return arguments[0].style[arguments[1]];
+            // } else {
+            //     return arguments[0].style[arguments[1]] = arguments[2];
+            // }
+
+            if (arguments.length == 2) {
+                return obj.style[name];
+            } else {
+                return obj.style[name] = value;
+            }
+        }
+
+
+
+
+
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+
+
+            // alert(css(oDiv, 'width'));
+            css(oDiv, 'background', 'green');
+
+
+            //取非行间样式
+            var oDiv2 = document.getElementById('div2');
+            // oDiv2.currentStyle.width;  不兼容
+            // getComputedStyle(oDiv2, false).width; //第二个参数 随便写  也有兼容问题
+
+
+
+            //处理兼容性问题
+            if (oDiv2.currentStyle) {
+                alert(oDiv2.currentStyle.width);
+            } else {
+                alert(getComputedStyle(oDiv2, false).width);
+            }
+
+
+            //调用最后封装的方法
+            getStyle(oDiv2, width);
+
+        }
+
+        //写一个处理兼容性问题的公共方法
+        function getStyle(obj, name) {
+            if (obj.currentStyle) {
+                return obj.currentStyle.name;
+            } else {
+                return getComputedStyle(oDiv2, false).width;
+            }
+        }
+
+
+        //符合样式 ： background border  单一样式： width
+
+        //数组操作
+
+        var arr1 = [12,3,4,5,6,7];
+
+        var arr2 = new Array(11,33,4,3,5,6);
+
+        arr1.length;//获取length
+        arr2.length = 3; //设置数组长度 为3  数组中就只剩前三个元素 
+
+        arr2.length = 0; //length设置为0 相当于清空数组
+
+        arr2.push(4); //向数组末尾添加一个元素
+        arr2.pop(); //数组末尾删除一个元素
+
+        arr2.shift(); //从头部删除一个元素
+        arr2.unshift(3); //从头部添加一个元素
+
+        arr1.splice(2, 3); //删除 splice （起点：  长度： ）
+
+        arr2.splice(2, 2,'1','2'); //先删除再插入 splice （起点：  长度： 元素：）
+
+
+        arr1.concat(arr2);//数组连接
+
+        arr1.join('-'); //数组元素用 - 连接
+
+        arr1.sort(); //排序   字符串首字母排序  数字排序反而有问题
+
+        arr2.sort(function (n1, n2) {
+            // if (n1 < n2) {
+            //     return -1; //只要是负数就可
+            // } else if(n1 > n2){
+            //     return 1; //只要是正数就可
+            // } else {
+            //     return 0;
+            // }
+            //简写
+            return n1 - n2;
+        });
+    </script>
+    <style>
+        #div2 {
+            width: 200px;
+            height: 200px; 
+            background: yellow
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1" style="width:200px; height:300px; background:red"></div>
+    <div id="div2"></div>
+</body>
+
+</html>

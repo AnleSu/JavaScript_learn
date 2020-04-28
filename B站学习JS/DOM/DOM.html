@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script>
+
+        window.onload = function () {
+            var oUl = document.getElementById('ul1');
+            // alert(oUl.childNodes.length); // 13 算上了空的文本节点 
+
+            //节点类型  3:文本节点  1： 元素节点
+            for (let index = 0; index < oUl.childNodes.length; index++) {
+                const element = oUl.childNodes[index];
+                // alert(element.nodeType);
+                if (element.nodeType == 1) {
+                    element.style.background = 'red';
+                }
+                
+            }
+
+
+            //children 只包含元素节点
+            for (let index = 0; index < oUl.children.length; index++) {
+                const element = oUl.children[index];
+                element.style.background = 'red';
+                
+            }
+
+            //父节点parentNode
+            var aA = document.getElementsByTagName('a');
+            for (let index = 0; index < aA.length; index++) {
+                const element = aA[index];
+                element.onclick = function () {
+                    this.parentNode.style.display = 'none';
+                }
+            }
+
+            //offsetParent 
+            //css  绝对定位元素  根据谁定位 ？  有定位(position)的父  如果直接父  没有定位 就继续往上找
+            var oDiv2 = document.getElementById('div2');
+            alert(oDiv2.offsetParent);//div1 设置position则是div  不设置 则是body
+        } 
+    </script>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: #cccccc;
+            margin: 200px;
+            /* 查看设置position 和不设置position的效果区别 */
+            position: relative;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top: 50px;
+            left: 50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"> 
+        <div id="div2"></div>
+    </div>
+    <ul id="ul1">
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+        <li>
+            dakjofej
+            <a href="script::"> 隐藏 </a>
+        </li>
+    </ul>
+
+    ajfsdijfie 文本节点
+    <span>asdfjo  元素节点</span>
+</body>
+</html>

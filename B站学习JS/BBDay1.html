@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标提示框</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: #CCC;
+            border: 1px solid #999;
+            /* 一开始是隐藏的 */
+            display: none;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+    <script>
+        function hiddenCheckBox() {
+            document.getElementById('div1').style.display='none';
+        }
+        function showCheckBox() {
+            document.getElementById('div1').style.display='block';
+        }
+        function toGreen() {
+            var oDiv = document.getElementById('div2');
+            oDiv.style.width = '300px';
+            oDiv.style.height = '300px';
+            oDiv.style.background = 'green';
+        }
+        function toRed() {
+            var oDiv = document.getElementById('div2');
+            oDiv.style.width = '200px';
+            oDiv.style.height = '200px';
+            oDiv.style.background = 'red';
+        }
+    </script>
+</head>
+
+<body>
+    <!--onmouseover 鼠标移入  onmouseout 鼠标移出-->
+    <!--getElementById 获取元素  -->
+    <input type="checkbox" onmouseover="showCheckBox()"
+        onmouseout="hiddenCheckBox()" />
+    <div id="div1">
+        为了您的。。。。
+    </div>
+    <input type="button" value="button" onclick="alert('zczczczcz')">
+    <!-- 函数调用 带() -->
+    <div id="div2" onmouseover="toGreen()" onmouseout="toRed()"></div>
+</body>
+
+</html>

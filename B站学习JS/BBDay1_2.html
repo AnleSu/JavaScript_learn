@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if语句：显示与隐藏 & a链接加js</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background: #ccc;
+            display: none;
+        }
+        #div2 {
+            width: 100px;
+            height: 200px;
+            border: 1px solid black;
+        }
+        .box {
+            background: red;
+        }
+    </style>
+    <script>
+        function showHide() {
+            var oDiv = document.getElementById('div1');
+            if (oDiv.style.display == 'none') {
+                oDiv.style.display = 'block';
+            } else {
+                oDiv.style.display = 'none';
+            }
+        }
+
+        function toRed() {
+            var oDiv = document.getElementById('div2');
+            // 这里必须用className  不能是class  代表标签中的class 只有这一个例外 <div id="div2" class="box"></div>
+            oDiv.className = 'box';
+            oDiv.id = 'div1';
+        }
+    </script>
+</head>
+<body>
+   <input type="button" value="show or hidden" onclick="showHide()">
+   <div id="div1">
+
+   </div> 
+   <!--href 可以是js代码  但是一般不写-->
+   <a href="javascript:">链接</a>
+   <div id="div2" onclick="toRed()"></div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年历（innerHTML）& 数组 & 字符串拼接</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        #tab .active {
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oText = document.getElementById('text1');
+            var oBtn = document.getElementById('btn1');
+            var oDiv = document.getElementById('div1');
+            oBtn.onclick = function () {
+                oDiv.innerHTML = oText.value;//可以直接给innerHTML设置标签
+            }
+
+
+
+            //日历
+            var oTab = document.getElementById('tab');
+            var oLi = oTab.getElementsByTagName('li');
+
+            var oText = oTab.getElementsByTagName('div')[0];
+            var arr = [
+                '快过年了，大家可以商量着去哪儿玩~',
+                '2快过年了，大家可以商量着去哪儿玩~',
+                '3快过年了，大家可以商量着去哪儿玩~',
+                '4快过年了，大家可以商量着去哪儿玩~',
+                '5快过年了，大家可以商量着去哪儿玩~',
+                '6快过年了，大家可以商量着去哪儿玩~',
+                '7快过年了，大家可以商量着去哪儿玩~',
+                '8快过年了，大家可以商量着去哪儿玩~',
+                '9快过年了，大家可以商量着去哪儿玩~',
+                '10快过年了，大家可以商量着去哪儿玩~',
+                '11快过年了，大家可以商量着去哪儿玩~',
+                '12快过年了，大家可以商量着去哪儿玩~',
+            ];
+            for (let index = 0; index < oLi.length; index++) {
+                const element = oLi[index];
+                element.index = index;
+                element.onmouseover = function () {
+                    for (let index = 0; index < oLi.length; index++) {
+                        oLi[index].className = '';
+
+                    }
+                    this.className = 'active';
+                    //给innerHTML设置标签
+                    oText.innerHTML = '<h2>' + (this.index + 1) + '月活动</h2> <p>' + arr[this.index] + '</p>';
+
+                }
+
+            }
+
+        }
+    </script>
+    <style>
+        body {
+            background: skyblue;
+        }
+
+        #tab {
+            height: 700px;
+            width: 440px;
+            background: gray;
+            margin-left: 500px;
+            margin-top: 10px;
+            position: absolute;
+        }
+
+        #tab ul {
+            margin-top: 20px;
+        }
+
+        #tab ul li {
+            list-style: none;
+            height: 100px;
+            width: 100px;
+            background: black;
+            float: left;
+            margin: 10px;
+            text-align: center;
+            border: 1px solid #000;
+            color: white;
+        }
+
+        #tab .active {
+            background: white;
+            color: red;
+        }
+
+        .text {
+            background: white;
+            height: 150px;
+            width: 335px;
+            font-size: 15px;
+            margin-top: 520px;
+            margin-left: 50px;
+            position: relative;
+            border: 2px solid blue;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="text1">
+    <input type="button" id="btn1" value="设置文字">
+    <div id="div1"></div>
+
+    <div id="tab" class="calendar">
+        <ul>
+            <li class="active">
+                <h2>1</h2>
+                <p>JAN</p>
+            </li>
+
+            <li>
+                <h2>2</h2>
+                <p>FER</p>
+            </li>
+            <li>
+                <h2>3</h2>
+                <p>MAR</p>
+            </li>
+            <li>
+                <h2>4</h2>
+                <p>APR</p>
+            </li>
+            <li>
+                <h2>5</h2>
+                <p>MAY</p>
+            </li>
+            <li>
+                <h2>6</h2>
+                <p>JUN</p>
+            </li>
+            <li>
+                <h2>7</h2>
+                <p>JULY</p>
+            </li>
+            <li>
+                <h2>8</h2>
+                <p>AUG</p>
+            </li>
+            <li>
+                <h2>9</h2>
+                <p>SEP</p>
+            </li>
+            <li>
+                <h2>10</h2>
+                <p>OCT</p>
+            </li>
+            <li>
+                <h2>11</h2>
+                <p>NOV</p>
+            </li>
+            <li>
+                <h2>12</h2>
+                <p>DEC</p>
+            </li>
+        </ul>
+        <div class="text">
+            <h2>1月活动</h2>
+            <p>快过年了，大家可以商量着去哪儿玩~</p>
+        </div>
+    </div>
+</body>
+
+</html>

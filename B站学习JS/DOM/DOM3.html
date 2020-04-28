@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM方式操作元素属性</title>
+    <script>
+        window.onload = function () {
+            var oText = document.getElementById('text1');
+            var oBtn = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+            oBtn.onclick = function () {
+                // oText.value = 'abcdd';
+                // 可以用setAttribute  getAttribute操作的属性 都可以直接用 oText.value || oText['value']
+                oText.setAttribute('value', 'abdfdf');
+                
+                alert(oText.getAttribute('value'));
+                
+            }
+            oBtn2.onclick = function () {
+                oText.removeAttribute('value');
+            }
+
+
+            //用className选择元素
+            var oUl = document.getElementById('ul1');
+
+
+            // var aLi = oUl.getElementsByTagName('li');
+            // for (let index = 0; index < aLi.length; index++) {
+            //     const element = aLi[index];
+            //     if (element.className == 'box') {
+            //         element.style.background = 'red';
+            //     }
+                
+            // }
+
+            var aBox = getByClass(oUl,'box');
+            for (let index = 0; index < aBox.length; index++) {
+                const element = aBox[index];
+                element.style.background = 'red';
+            }
+
+           
+        }
+
+        //根据className 获取元素数组
+        function getByClass(oParent, sClass) {
+                var aResult = [];
+                // * 通配符 
+                var aEle = oParent.getElementsByTagName('*');
+                for (let index = 0; index < aEle.length; index++) {
+                    const element = aEle[index];
+                    if (element.className == sClass) {
+                        aResult.push(element);
+                    }
+                    
+                }
+                return aResult;
+            }
+     </script>
+</head>
+<body>
+    <input type="text" id="text1">
+    <input type="button" id="btn1" value="设置文字">
+    <input type="button" id="btn2" value="删除文字">
+    <ul id="ul1">
+        <li class="box"></li>
+        <li>
+            
+        </li>
+        <li></li>
+        <li class="box"></li>
+        <li class="box"></li>
+        <li></li>
+        <li class="box"></li>
+        <li></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础知识</title>
+    <script>
+        //求余(取模)
+        alert(12 % 5);
+        window.onload = function () {
+            var aLi = document.getElementsByTagName('li');
+            for (let index = 0; index < aLi.length; index++) {
+                const element = aLi[index];
+                if (index % 2 == 0) {//隔行变色
+                    element.style.background = '#ccc';
+                } else {
+                    element.style.background = '';
+                }
+
+            }
+
+
+        }
+
+        var s = 156;
+        var min = parseInt(s / 60); //分钟
+        var miao = s % 60;  //秒
+
+        // !== 类似于 ===    ！=  和 ==  隐式转换和不转换的区别
+
+        //判断N是不是两位数
+        var n = 45;
+        if (n > 9 && n < 100) {
+            
+        }
+
+        //break 跳出整个循环  continue 跳出本次循环
+
+        //真：true、非零数字、非空字符串、非空对象
+        //假：false、数字零、空字符串、空对象、undefined
+
+         //json
+         var json = {
+             a: 12,
+             b: 5,
+             c:'123'
+         };
+         json.a;
+
+         json['b'];
+
+         //json 循环
+         for (const key in json) {
+             if (json.hasOwnProperty(key)) {
+                 const element = object[key];
+                 
+             }
+         }
+
+         
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</body>
+
+</html>

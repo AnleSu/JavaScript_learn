@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            background-color: antiquewhite;
+            display: flex;
+            width: 400px;
+            height: 60px;
+            /* 
+            布局方向，它决定 flex-item 是从左到右、从右到左、从上到下、还是从下到上进行布局，它会影响主轴的方向，以及items 的布局起点位置
+            它主要包含 4 个值：
+            row（默认）：从水平方向的左侧开始布局；
+            row-reverse：从水平方向的右侧开始布局；
+            column：从垂直方向的顶部开始布局；
+            column-reverse: 从垂直方向的底部开始布局；
+            
+            */
+            flex-direction: row;
+            margin-bottom: 10px;
+            /* 决定「主轴」items 的对齐方式 
+            flex-start（默认）：与主轴的起始位置（main start）对齐；
+            flex-end：与主轴的结束位置（main end）对齐；
+            center：居中于主轴；
+            space-around: 左右边距是中间的 1/2；
+            space-evenly: 每个 item 的间距相等；
+            space-between: 左右无边距；
+            */
+            justify-content: space-around;
+            /* 
+            决定「纵轴」items 的对齐方式
+            flex-start（默认）：与纵轴的起始位置（cross start）对齐；
+            flex-end：与纵轴的结束位置（cross end）对齐；
+            center：居中与纵轴；
+            baseline：与基线对齐；
+            stretch：扩展满纵轴；
+             */
+            align-items: center;
+            /* 
+            items 超出容器后该如何显示，是否要多行显示。
+            nowrap（默认）：单行显示；
+            wrap：多行显示；
+            wrap-reverse：多行显示；
+            */
+            flex-wrap: nowrap;
+        }
+
+        .space-around {
+            
+            justify-content: space-around;
+        }
+
+        .center {
+            justify-content: center;
+        }
+
+        .end {
+            justify-content: end;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main">
+        <div>前端学习</div>
+        <div>好好学习</div>
+        <div>天天向上</div>
+    </div>
+
+</body>
+
+</html>
