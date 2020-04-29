@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            position: absolute;
+            background: red;
+            width: 200px;
+            height: 200px;
+        }
+        #div2 {
+            margin-top: 250px;
+            position: absolute;
+            background: greenyellow;
+            width: 200px;
+            height: 200px;
+            left: -200px;
+        }
+
+        #div2 span {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: #cccccc;
+            line-height: 20px;
+            right: -20px;
+            top: 70px;
+        }
+    </style>
+    <script>
+        var timer = null;
+        // function startMove() {
+        //     var oDiv = document.getElementById('div1');
+        //     var speed = 1;
+        //     //这里要保证同时只有一个定时器
+        //     clearInterval(timer);
+
+        //     timer = setInterval(() => {
+        //         if (oDiv.offsetLeft >= 300) {//停止运动的条件
+        //             clearInterval(timer);
+        //         } else {
+        //             oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+        //         }
+
+        //     }, 30);
+        // }
+
+        function mouseoverFun(iTarget) {
+            var oDiv = document.getElementById('div2');
+            var speed = 0;
+            if (oDiv.offsetLeft > iTarget) {
+                speed = -10;
+            } else {
+                speed = 10;
+            }
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (oDiv.offsetLeft == iTarget) {
+                    clearInterval(timer);
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                }
+            }, 30);
+        }
+
+        window.onload = function () {
+            var oDiv = document.getElementById('div2');
+            oDiv.onmouseover = function () {
+                mouseoverFun(0)
+            };
+            oDiv.onmouseout = function () {
+                mouseoverFun(-200)
+            }; 
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" id="btn1" value="move" onclick="startMove()">
+    <div id="div1"></div>
+
+    <div id="div2">
+        <span>分享到</span>
+    </div>
+</body>
+
+</html>

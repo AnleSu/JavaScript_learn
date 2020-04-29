@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>表格应用 </title>
+    <title>表格应用</title>
     <script>
         window.onload = function () {
             var oTab = document.getElementById('tab1');
@@ -108,6 +108,30 @@
 
 
                 }
+
+
+            }
+
+            var oBtn3 = document.getElementById('btn3');
+            oBtn3.onclick = function () {
+                var arr = [];
+                for (let index = 0; index < oTab.tBodies[0].rows.length; index++) {
+                    const element = oTab.tBodies[0].rows[index];
+                    arr.push(element);
+                    
+                }
+
+                arr.sort( function (tr1, tr2) {
+                    var n1 = parseInt(tr1.cells[0].innerHTML);
+                    var n2 = parseInt(tr2.cells[0].innerHTML);
+                    return n1 - n2;
+                });
+
+                for (let index = 0; index < arr.length; index++) {
+                    const element = arr[index];
+                    oTab.tBodies[0].appendChild(element);
+                    
+                }
             }
 
 
@@ -121,6 +145,7 @@
     <input type="button" value="添加" id="btn1">
     <input type="text" id="keyword">
     <input type="button" value="search" id="btn2">
+    <input type="button" value="排序" id="btn3">
     <table id="tab1" border="1" width="500px">
         <thead>
             <td>ID</td>
@@ -130,7 +155,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
+                <td>3</td>
                 <td>张三</td>
                 <td>13</td>
                 <td></td>
@@ -142,7 +167,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td>3</td>
+                <td>6</td>
                 <td>发三</td>
                 <td>45</td>
                 <td></td>
@@ -160,7 +185,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td>6</td>
+                <td>1</td>
                 <td>张分</td>
                 <td>43</td>
                 <td></td>

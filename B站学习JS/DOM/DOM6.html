@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ul1 {
+            background: palevioletred;
+        }
+        #ul2 {
+            background: burlywood;
+        }
+    </style>
+    <script> 
+        window.onload = function () {
+            var oUl1 = document.getElementById('ul1');
+            var oUl2 = document.getElementById('ul2');
+            var oBtn = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+
+
+            oBtn.onclick = function () {
+                var oLi = oUl1.children[0];
+                // oUl1.removeChild(oLi);//此处可以不remove
+
+                oUl2.appendChild(oLi);//1.先把元素从原有父级上删掉 2.添加到新的父级上
+
+                oUl1.appendChild(oLi); //重新添加到父级中
+            }
+
+            oBtn2.onclick = function () {
+                var aLi = oUl1.getElementsByTagName('li');
+                //aLi  其实并不是真正意义上的数组 只是一个元素集合 所以没有sort()
+
+                var arr = [];
+                for (let index = 0; index < aLi.length; index++) {
+                    const element = aLi[index];
+                    arr.push(element);
+                    
+                }
+                arr.sort( function (li1, li2) {
+                    //比较li中的innerHTML
+                    var n1 = parseInt(li1.innerHTML);
+                    var n2 = parseInt(li2.innerHTML);
+
+                    return n1 - n2;
+                });
+                // 将排好序的数组中的元素 append一遍 
+                for (let index = 0; index < arr.length; index++) {
+                    const element = arr[index];
+                    oUl2.appendChild(element);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li>55</li>
+        <li>34</li>
+        <li>8</li>
+        <li>14</li>
+    </ul>
+    <input type="button" value="移动" id="btn1">
+    <input type="button" value="排序" id="btn2">
+    <ul id="ul2"></ul>
+</body>
+</html>
