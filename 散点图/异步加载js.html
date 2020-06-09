@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		
+		</style>
+		<script type="text/javascript" src="tools.js" defer="defer">
+			<!--defer 异步加载  只有IE可用  -->
+			<!-- 整个页面全部解析完 domTree解析完之后 才执行 -->
+			<!-- 可加载外部脚本 src  也可以写在script标签中 -->
+			var obj = {
+				"name":"admin",
+				"age":123
+			},
+		</script>
+		<script type="text/javascript" async="async" src="network.js">
+			<!-- 加载完就执行 -->
+			<!-- 只能加载外部脚本 src -->
+		</script>
+	</head>
+	<body>
+		
+		
+		<script type="text/javascript">
+			var obj = {
+				"name":"admin",
+				"age":123
+			},
+			// json 转 字符串
+			var str = JSON.stringify(obj);
+			// 字符串 转 json
+			var jsonOjb = JSON.parse(str);
+		</script>
+		<!-- 深度优先原则 形成一颗domTree -->
+		<div></div>
+		<!--domTree 完成只是解析完 但并不一定是下载完   -->
+		<img src="" >
+		<iframe src="" width="" height=""></iframe>
+		<span id="">
+			
+		</span>
+		<strong></strong>
+		
+		<!-- domTree解析完成 解析CSS 形成一颗cssTree -->
+		<!-- domTree + cssTree = renderTree  渲染引擎才开始绘制页面 -->
+		<!-- reflow重排 ： 1. dom节点的删除 添加 
+						  2.dom节点的宽高变化，位置变化，display none block
+						  3.offsetWidth offsetLeft 
+						  ...
+						 导致renderTree重新构建 -->
+		<!-- repaint 重绘  比如字体颜色  -->	
+					 
+					 
+		<script type="text/javascript">
+			var script = document.createElement('script');
+			script.type = "text/javascript";
+			scrpt.src = "demo.js";
+			
+			
+			// 脚本加载完 才能调用脚本中的方法 test
+			if(script.readyState) {
+				script.onreadystatechange = function () {
+					if(script.readeyState == "loaded" || script.readeyState == "complete") {
+						test();
+					}
+				}
+			} else {
+				script.onload = function() {
+					test();
+				}
+			}
+			
+			// 插入document中才会执行这个脚本
+			document.body.appendChild(script);
+			
+			
+		</script>
+		
+		<script type="text/javascript">
+			function loadScript(url, callback) {
+				var script = document.createElement('script');
+				script.type = "text/javascript";
+				scrpt.src = url;
+				
+				
+				// 脚本加载完 才能调用脚本中的方法 test
+				if(script.readyState) {
+					script.onreadystatechange = function () {
+						if(script.readeyState == "loaded" || script.readeyState == "complete") {
+							callback();
+						}
+					}
+				} else {
+					script.onload = function() {
+						callback();
+					}
+				}
+				
+				// 插入document中才会执行这个脚本
+				document.body.appendChild(script);
+			}
+		</script>
+	</body>
+</html>
