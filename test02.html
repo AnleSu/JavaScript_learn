@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function loadDiv(text) {
+				var div =
+					"<div id='_layer_'> <div id='_LoadingMaskLayer_' style='filter: alpha(opacity=30); -moz-opacity: 0.3; opacity: 0.3;background-color: #000; width: 100%; height: 100%; z-index: 1000; position: absolute;" +
+					"left: 0; top: 0; overflow: hidden; display: none'></div><div id='_wait_' style='z-index: 1005; position: absolute; width:430px;height:218px; display: none'  ><center><img src='image/loading.gif' style='width: 55px; height: 55px';/><h3 style='font-size:15px;color:#333'；font-sytle=normal>" +
+					"" + text +
+					"</h3></center></div></div>";
+				return div;
+			}
+					
+			function LayerShow(text) {
+				var addDiv = loadDiv(text);
+				var element = $($.parseHTML("#" + addDiv)).appendTo(document.body);
+				$(window).resize(Position);
+				var deHeight = $(document).height();
+				var deWidth = $(document).width();
+				Position();
+				$("#_LoadingMaskLayer_").show();
+				$("#_wait_").show();
+			}
+					
+			function Position() {
+				$("#_LoadingMaskLayer_").width($(document).width());
+				var deHeight = $(window).height();
+				var deWidth = $(window).width();
+				$("#_wait_").css({
+					left: (deWidth - $("#_wait_").width()) / 2 + "px",
+					top: (deHeight - $("#_wait_").height()) / 2 + "px"
+				});
+			}
+			function LayerHide() { 
+			    $("#_LoadingMaskLayer_").hide(); 
+			    $("#_wait_").hide(); 
+			    del(); 
+			}
+			
+			function del() { 
+				var delDiv = document.getElementById("_layer_");     delDiv.parentNode.removeChild(delDiv); 
+			 //删除 
+			 }
+             window.onload = function (){
+                LayerShow("正在加载");
+             };
+    </script>
+</head>
+<body>
+    
+    
+
+    
+</body>
+</html>
